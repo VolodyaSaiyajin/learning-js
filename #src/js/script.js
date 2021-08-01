@@ -29,19 +29,13 @@
 //   useNumber();
 //   resultValue = Number(number1) * Number(number2);
 // }
-let operationButtons = document.getElementsByClassName('calc__action');
-let number = document.querySelectorAll('#number');
+
 let firstInput = document.getElementById('firstNumber');
 let secondInput = document.getElementById('secondNumber');
-let resultInput = document.getElementById('resultInput');
-
-let buttonPlus = document.getElementById('buttonPlus');
-let buttonMinus = document.getElementById('buttonMinus');
-let buttonMultipe = document.getElementById('buttonMultipe');
-let buttonDivide = document.getElementById('buttonDivide');
-let buttonResult = document.getElementById('buttonResult');
 let testingButton = document.getElementById('testingButton');
-
+let resultInput = document.getElementById('resultInput');
+let operationButtons = document.getElementsByClassName('calc__number-inside');
+let testingButton = document.getElementById('testingButton');
 
 
 function getNumber1() {
@@ -81,11 +75,23 @@ function doOperationbuttonResult() {
     resultInput.value = resultValue;
 }
 
-function test() {
-    numberIndex = number.innerHTML;
-
-    console.log(numberIndex);
+function onOperationButtonClick(eventObject) {
+    let clickedElement = eventObject.currentTarget;
+    let operation = clickedElement.innerHTML;
+    makeOperation(operation);
 }
+
+for (let i = 0; i < operationButtons.length; i++) {
+        let calcButton = operationButtons[i];
+        calcButton.addEventListener('click', onOperationButtonClick);
+    }
+
+function test() {
+    
+}
+
+
+
 
 
 
