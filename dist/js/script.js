@@ -34,9 +34,7 @@ let firstInput = document.getElementById('firstNumber');
 let secondInput = document.getElementById('secondNumber');
 let testingButton = document.getElementById('testingButton');
 let resultInput = document.getElementById('resultInput');
-let operationButtons = document.getElementsByClassName('calc__number-inside');
-let testingButton = document.getElementById('testingButton');
-
+let operationButtons = document.querySelectorAll('.calc__buttons').childNodes;
 
 function getNumber1() {
     let firstNumber = Number(firstInput.value);
@@ -51,24 +49,43 @@ function getNumber2() {
 
 
 
-function doOperationButtonPlus() {
+// function doOperationButtonPlus() {
 
-    resultValue = getNumber1() + getNumber2();
+//     resultValue = getNumber1() + getNumber2();
 
+// }
+
+// function doOperationbuttonMinus() {
+//     resultValue = getNumber1() - getNumber2();
+// }
+
+// function doOperationbuttonMultipe() {
+
+//     resultValue = getNumber1() * getNumber2();
+// }
+
+// function doOperationbuttonDivide() {
+
+//     resultValue = getNumber1() / getNumber2();
+// }
+
+function makeOperation(operationCode) {
+    if (operationCode = '+') {
+        resultValue = getNumber1() + getNumber2();
+    } else if (operationCode = '-') {
+        resultValue = getNumber1() - getNumber2();
+    } else if (operationCode = '*') {
+        resultValue = getNumber1() * getNumber2();
+    } else if (operationCode = '/') {
+        resultValue = getNumber1() / getNumber2();
+    }
 }
 
-function doOperationbuttonMinus() {
-    resultValue = getNumber1() - getNumber2();
-}
-
-function doOperationbuttonMultipe() {
-
-    resultValue = getNumber1() * getNumber2();
-}
-
-function doOperationbuttonDivide() {
-
-    resultValue = getNumber1() / getNumber2();
+function toggleOperationButton() {
+    for (let i = 0; i < operationButtons.length; i++) {
+        operationCode = operationButtons.currentTarget[i];
+        makeOperation();
+    }
 }
 
 function doOperationbuttonResult() {
@@ -81,24 +98,11 @@ function onOperationButtonClick(eventObject) {
     makeOperation(operation);
 }
 
-for (let i = 0; i < operationButtons.length; i++) {
-        let calcButton = operationButtons[i];
-        calcButton.addEventListener('click', onOperationButtonClick);
-    }
-
 function test() {
-    
+    console.log(operationButtons);
 }
 
-
-
-
-
-
 // buttonNumberClick.addEventListener('click', doClickOnNumber)
-buttonPlus.addEventListener('click', doOperationButtonPlus);
-buttonMinus.addEventListener('click', doOperationbuttonMinus);
-buttonMultipe.addEventListener('click', doOperationbuttonMultipe);
-buttonDivide.addEventListener('click', doOperationbuttonDivide);
+// operationButtons.addEventListener('click', toggleOperationButton);
 buttonResult.addEventListener('click', doOperationbuttonResult);
 testingButton.addEventListener('click', test);
